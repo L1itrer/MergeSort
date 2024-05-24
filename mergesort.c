@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-void merge(void* arr, void* L, void* R, size_t left_index, size_t right_index, size_t sizeof_element, int (*comparator)(const void*, const void*))
+static void merge(void* arr, void* L, void* R, size_t left_index, size_t right_index, size_t sizeof_element, int (*comparator)(const void*, const void*))
 {
     size_t i = 0, j = 0, k = 0;
     //k is the index of the main array
@@ -48,8 +48,8 @@ void merge_sort(void* arr, size_t number_of_elements, size_t sizeof_element, int
     void* L, *R;
     if (number_of_elements < 2) return;
 
-    L = malloc(mid * sizeof_element);
-    R = malloc((number_of_elements - mid) * sizeof_element);
+    L = malloc(mid * sizeof_element); //Left sub-array is from 0 to mid-1
+    R = malloc((number_of_elements - mid) * sizeof_element); //Right sub-array is from mid to number_of_elements-1
     if (L == NULL || R == NULL)
     {
         fprintf(stderr, "Get more ram lol, or don't try to sort so much data idiot\n");
@@ -68,9 +68,20 @@ void merge_sort(void* arr, size_t number_of_elements, size_t sizeof_element, int
 }
 
 
-int main(void)
+int compare_asc_example(const void* a, const void* b)
 {
+    int* f = (int*)a;
+    int*s = (int*)b;
+    if (*f > *s) return 1;
+    else if (*f < *s) return -1;
+    return 0;
+}
 
-
+int compare_desc_example(const void* a, const void* b)
+{
+    int* f = (int*)a;
+    int*s = (int*)b;
+    if (*f > *s) return -1;
+    else if (*f < *s) return 1;
     return 0;
 }
