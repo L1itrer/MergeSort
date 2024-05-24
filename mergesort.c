@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 
+
 static void merge(void* arr, void* L, void* R, size_t left_index, size_t right_index, size_t sizeof_element, int (*comparator)(const void*, const void*))
 {
     size_t i = 0, j = 0, k = 0;
