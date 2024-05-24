@@ -11,7 +11,6 @@ static void merge(void* arr, void* L, void* R, size_t left_index, size_t right_i
     //j is the index of the R sub-array
     while (i < left_index && j < right_index)
     {
-        //todo: verify if less then zero or more then zero or whathever
         if (comparator((char*)L + i * sizeof_element, (char*)R + j * sizeof_element) <= 0)
         {
             memcpy((char*)arr + k * sizeof_element, (char*)L + i * sizeof_element, sizeof_element);
@@ -26,7 +25,7 @@ static void merge(void* arr, void* L, void* R, size_t left_index, size_t right_i
         }
     }
 
-    //copy the remainig sub-arrays
+    //copy the remaining sub-arrays
     while (i < left_index) 
     {
         memcpy((char*)arr + k * sizeof_element, (char*)L + i * sizeof_element, sizeof_element);
@@ -44,7 +43,6 @@ static void merge(void* arr, void* L, void* R, size_t left_index, size_t right_i
 void merge_sort(void* arr, size_t number_of_elements, size_t sizeof_element, int (*comparator)(const void*, const void*))
 {
     size_t mid = number_of_elements/2;
-    size_t i;
 
     void* L, *R;
     if (number_of_elements < 2) return;
