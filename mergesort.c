@@ -29,8 +29,8 @@ static void merge(void* arr, void* L, void* R, size_t left_index, size_t right_i
     while (i < left_index) 
     {
         memcpy((char*)arr + k * sizeof_element, (char*)L + i * sizeof_element, sizeof_element);
-        i++;
-        k++;
+        ++i;
+        ++k;
     }
     while (j < right_index) 
     {
